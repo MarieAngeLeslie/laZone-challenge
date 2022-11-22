@@ -40,6 +40,7 @@ const Register: NextPage<IRegisterProps> = () => {
                 type="email"
               />
             </Box>
+
             <Button
               type="submit"
               mt={4}
