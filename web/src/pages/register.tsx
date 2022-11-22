@@ -16,13 +16,14 @@ const Register: NextPage<IRegisterProps> = () => {
   return (
     <Wrapper variant="small">
       <Formik
-        initialValues={{ username: "", email: "" }}
+        initialValues={{ username: "Enter your name", email: "" }}
         onSubmit={async (values) => {
-          const response = await register({ input: values });
-          const user = response.data?.register;
-          if (user) {
-            router.push(`user/${user.username}`);
-          }
+          // const response = await register({ input: values });
+          // const user = response.data?.register;
+          // if (user) {
+          //   router.push(`user/${user.username}`);
+          // }
+          console.log(values);
         }}
       >
         {({ isSubmitting }) => (
@@ -35,7 +36,7 @@ const Register: NextPage<IRegisterProps> = () => {
             <Box mt={4}>
               <InputField
                 name="email"
-                placeholder="email"
+                placeholder="enter your mail"
                 label="Email"
                 type="email"
               />
@@ -43,7 +44,7 @@ const Register: NextPage<IRegisterProps> = () => {
             <Box mt={4}>
               <InputField
                 name="firstname"
-                placeholder="firstname"
+                placeholder="enter your firstname"
                 label="firstname"
                 type="text"
               />
@@ -51,7 +52,7 @@ const Register: NextPage<IRegisterProps> = () => {
             <Box mt={4}>
               <InputField
                 name="lastname"
-                placeholder="lastname"
+                placeholder="enter your lastname"
                 label="lastname"
                 type="text"
               />
@@ -59,7 +60,7 @@ const Register: NextPage<IRegisterProps> = () => {
             <Box mt={4}>
               <InputField
                 name="password"
-                placeholder="password"
+                placeholder="your password"
                 label="password"
                 type="password"
               />

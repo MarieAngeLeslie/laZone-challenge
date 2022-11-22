@@ -21,19 +21,19 @@ export class User extends BaseEntity {
 
   @Field(() => String)
   @Column()
-  email!: string;
+  email: string;
 
   @Field(() => String)
   @Column()
-  firstname!: string;
+  firstname: string;
 
   @Field(() => String)
   @Column()
-  lastname!: string;
+  lastname: string;
 
   @Field(() => String)
   @Column()
-  password!: string;
+  password: string;
 
   @Field(() => String)
   @CreateDateColumn()
