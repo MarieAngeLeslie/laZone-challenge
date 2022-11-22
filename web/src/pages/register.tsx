@@ -18,9 +18,9 @@ const Register: NextPage<IRegisterProps> = () => {
       <Formik
         initialValues={{ username: "Enter your name", email: "" }}
         onSubmit={async (values) => {
-          // const response = await register({ input: values });
+          const response = await register({ input: values });
           // const user = response.data?.register;
-          // if (user) {
+          // if (user) { 
           //   router.push(`user/${user.username}`);
           // }
           console.log(values);
