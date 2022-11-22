@@ -2,10 +2,9 @@ import "reflect-metadata";
 import express from "express";
 import cors from "cors";
 import { ApolloServer } from "apollo-server-express";
-
 import { openDBConnection } from "./utils/database";
 import config from "./constants";
-import { createSchema } from "./utils/createSchema";
+//import { createSchema } from "./utils/createSchema";
 import { buildSchema } from "type-graphql";
 import { HelloResolver } from "./resolvers/hello";
 import { userResolver } from "./resolvers/user";

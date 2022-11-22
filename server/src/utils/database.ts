@@ -6,6 +6,10 @@ export const openDBConnection = async (drop = false): Promise<Connection> => {
   const name = process.env.NODE_ENV;
   const connectionOptions = await getConnectionOptions(name);
 
+  console.log("connectionOptions : ");
+  console.log(connectionOptions);
+  console.log("EndconnectionOptions : ");
+
   return createConnection({
     ...connectionOptions,
     namingStrategy: new SnakeNamingStrategy(),
