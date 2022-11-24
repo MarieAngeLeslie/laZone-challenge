@@ -12,8 +12,9 @@ import {
 export class userResolver {
   @Mutation(() => UserResponse)
   async register(@Arg("input") input: UserInput): Promise<UserResponse | User> {
+    const username = input.username;
     const registredUser = User.findOne({
-      where: { username: input.username },
+      where: { username },
     });
     if (!!registredUser) {
       return {
