@@ -16,14 +16,60 @@ const Register: NextPage<IRegisterProps> = () => {
   return (
     <Wrapper variant="small">
       <Formik
-        initialValues={{ username: "Enter your name", email: "" }}
-        onSubmit={async (values) => {
+        initialValues={{
+          username: "",
+          email: "",
+          password: "",
+          lastname: "",
+          firstname: "",
+        }}
+        onSubmit={async (values, { setErrors }) => {
           const response = await register({ input: values });
           // const user = response.data?.register;
-          // if (user) { 
+          // if (user) {
           //   router.push(`user/${user.username}`);
           // }
-          console.log(values);
+
+          console.log(response);
+          if (!response.data) {
+            setErrors({
+              username: "this field can't be empty",
+              email: "this field can't be empty",
+              password: "this field can't be empty",
+              lastname: "this field can't be empty",
+              firstname: "this field can't be empty",
+            });
+          }
+          if (response.data?.register.errors[0].field) {
+            const field = response.data?.register.errors[0].field;
+            const message = response.data?.register.errors[0].message;
+            switch (field) {
+              case "username":
+                setErrors({
+                  username: message,
+                });
+                break;
+              case "email":
+                setErrors({
+                  email: message,
+                });
+                break;
+              case "firstname":
+                setErrors({
+                  firstname: message,
+                });
+                break;
+              case "lastname":
+                setErrors({
+                  lastname: message,
+                });
+                break;
+              case "password":
+                setErrors({
+                  password: message,
+                });
+            }
+          }
         }}
       >
         {({ isSubmitting }) => (
@@ -76,6 +122,7 @@ const Register: NextPage<IRegisterProps> = () => {
           </Form>
         )}
       </Formik>
+      
     </Wrapper>
   );
 };

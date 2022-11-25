@@ -12,16 +12,24 @@ import {
 export class userResolver {
   @Mutation(() => UserResponse)
   async register(@Arg("input") input: UserInput): Promise<UserResponse | User> {
+    let regex = /[A-Z]*[0-9]/;
+    let mailRegex = /[@]/;
     const username = input.username;
-    const registredUser = User.findOne({
+    const registredUser = await User.findOne({
       where: { username },
     });
+    // console.log("-----   ------");
+
+    // console.log(registredUser);
+
+    // console.log("-----   ------");
+
     if (!!registredUser) {
       return {
         errors: [
           {
             field: "username",
-            message: "this username is already registered",
+            message: "this username is already in our dataset",
           },
         ],
       };
@@ -36,24 +44,72 @@ export class userResolver {
         ],
       };
     }
-    if (input.password.length < 6 && input.password == input.username) {
+
+    if (input.email === "" || !mailRegex.test(input.email)) {
       return {
         errors: [
           {
-            field: "username",
-            message: "your should have stronger password",
+            field: "email",
+            message: "your email can't be empty",
           },
         ],
       };
     }
 
-    return User.create({
+    if (input.firstname === "") {
+      return {
+        errors: [
+          {
+            field: "firstname",
+            message: "your firstname can't be empty",
+          },
+        ],
+      };
+    }
+
+    if (input.lastname === "") {
+      return {
+        errors: [
+          {
+            field: "lastname",
+            message: "your lastname can't be empty",
+          },
+        ],
+      };
+    }
+    console.log("regex-test");
+    console.log(input.password);
+
+    console.log(regex.test(input.password));
+    console.log("end regex-test");
+
+    if (
+      input.password.length < 6 ||
+      input.password === input.username ||
+      !regex.test(input.password)
+    ) {
+      return {
+        errors: [
+          {
+            field: "password",
+            message:
+              "your password should be greater than 5 character and should have at least One capital letter and atone number",
+          },
+        ],
+      };
+    }
+
+    const newUser = await User.create({
       username: input.username,
       email: input.email,
       firstname: input.firstname,
       lastname: input.lastname,
       password: input.password,
     }).save();
+
+    return {
+      user: newUser,
+    };
   }
 
   @Mutation(() => User)

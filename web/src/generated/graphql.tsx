@@ -46,6 +46,7 @@ export type User = {
   id: Scalars["Int"];
   updatedAt: Scalars["String"];
   username: Scalars["String"];
+  //add fields here
 };
 
 export type UserInput = {
@@ -57,14 +58,17 @@ export type RegisterMutationVariables = Exact<{
   input: UserInput;
 }>;
 
+export type FieldError = {
+  field: string;
+  message: string;
+};
+
 export type RegisterMutation = {
   __typename?: "Mutation";
   register: {
     __typename?: "User";
-    email: string;
-    username: string;
-    createdAt: string;
-    updatedAt: string;
+    errors: [FieldError];
+    user: User;
   };
 };
 
