@@ -44,6 +44,8 @@ export type User = {
   __typename?: "User";
   createdAt: Scalars["String"];
   email: Scalars["String"];
+  firstname: Scalars["String"];
+  lastname: Scalars["String"];
   id: Scalars["Int"];
   updatedAt: Scalars["String"];
   username: Scalars["String"];
