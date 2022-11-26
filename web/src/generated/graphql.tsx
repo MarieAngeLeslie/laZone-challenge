@@ -96,6 +96,8 @@ export type GetByUsernameQuery = {
     __typename?: "User";
     id: number;
     username: string;
+    firstname: string;
+    lastname: string;
     email: string;
     createdAt: string;
     updatedAt: string;
@@ -125,6 +127,8 @@ export const LoginDocument = gql`
   mutation Login($login_credentials: UsernamePasswordInput!) {
     login(login_credentials: $login_credentials) {
       user {
+        id
+        username
         email
         firstname
         lastname
@@ -147,6 +151,8 @@ export const GetByUsernameDocument = gql`
     getByUsername(username: $username) {
       id
       username
+      firstname
+      lastname
       email
       createdAt
       updatedAt

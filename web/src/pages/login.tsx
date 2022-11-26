@@ -24,10 +24,10 @@ const Login: NextPage<ILoginProps> = () => {
           const response = await login({ login_credentials: values });
           console.log(values);
           console.log(response);
-
-          //   if (user) {
-          //     router.push(`user/${user.username}`);
-          //   }
+          const user = response.data?.login.user;
+          if (user) {
+            router.push(`user/${user.username}`);
+          }
         }}
       >
         {({ isSubmitting }) => (
