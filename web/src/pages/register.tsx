@@ -6,12 +6,11 @@ import { InputField } from "../components/InputField";
 import { withUrqlClient } from "next-urql";
 import { createUrqlClient } from "../utils/createUrqlClient";
 import { useRegisterMutation } from "../generated/graphql";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface IRegisterProps {}
 
 const Register: NextPage<IRegisterProps> = () => {
-  const router = useRouter();
   const [, register] = useRegisterMutation();
   return (
     <Wrapper variant="small">
@@ -122,7 +121,7 @@ const Register: NextPage<IRegisterProps> = () => {
           </Form>
         )}
       </Formik>
-      
+      <Link href="">I have an account login</Link>
     </Wrapper>
   );
 };

@@ -1,0 +1,12 @@
+mutation loginMutation($login_credentials: UsernamePasswordInput!) {
+  login(login_credentials: $login_credentials) {
+    user {
+      id
+      lastname
+    }
+    errors {
+      field
+      message
+    }
+  }
+}

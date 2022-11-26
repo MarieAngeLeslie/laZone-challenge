@@ -112,11 +112,11 @@ export class userResolver {
     };
   }
 
-  @Mutation(() => User)
+  @Mutation(() => UserResponse)
   async login(
     @Arg("login_credentials") credentials: UsernamePasswordInput
-  ): Promise<User | UserResponse | undefined> {
-    const member = User.findOne({
+  ): Promise<User | UserResponse> {
+    const member = await User.findOne({
       where: { username: credentials.username, password: credentials.password },
     });
 
@@ -125,13 +125,15 @@ export class userResolver {
         errors: [
           {
             field: "credentials",
-            message: "your credentials don't match with our dataset",
+            message: "your credentials don't match with any of our users",
           },
         ],
       };
     }
 
-    return member;
+    return {
+      user: member,
+    };
   }
 
   @Query(() => User, { nullable: true })
