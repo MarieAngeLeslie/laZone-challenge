@@ -1,4 +1,11 @@
 .error-style {
     color:red;
     text-align: center;
+    font-size: 1rem;
+}
+
+.primary-text-style {
+    font-size: 3rem;
+    margin-bottom: 50px;
+    text-align: center;
 }

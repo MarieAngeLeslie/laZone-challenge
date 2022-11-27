@@ -18,6 +18,7 @@ const Login: NextPage<ILoginProps> = () => {
   const [current_user, setCuurent_user] = useState(true);
   return (
     <Wrapper variant="small">
+      <p className={classes["primary-text-style"]}>Hey! who's going there?</p>
       {!current_user && (
         <p className={classes["error-style"]}>
           We're sorry guys your credentials don't match with any of our users
@@ -67,7 +68,6 @@ const Login: NextPage<ILoginProps> = () => {
           </Form>
         )}
       </Formik>
-      
     </Wrapper>
   );
 };

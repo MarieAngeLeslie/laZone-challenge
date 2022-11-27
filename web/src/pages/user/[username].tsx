@@ -5,6 +5,7 @@ import { useGetByUsernameQuery } from "../../generated/graphql";
 import { createUrqlClient } from "../../utils/createUrqlClient";
 import { Flex } from "@chakra-ui/react";
 import { Box, Button } from "@chakra-ui/react";
+import { Fragment } from "react";
 
 const User: NextPage = () => {
   const router = useRouter();
@@ -17,7 +18,6 @@ const User: NextPage = () => {
   const lastname = data?.getByUsername?.lastname;
 
   const zeMovieButtonPageHandler = () => {
-    const router = useRouter();
     router.push("/play");
   };
 
@@ -36,23 +36,36 @@ const User: NextPage = () => {
     );
   } else {
     return (
-      <Flex
-        alignItems="center"
-        h="100vh"
-        justifyContent="center"
-        fontWeight="bold"
-        fontSize="5xl"
-      >
-        Y're Welcome {firstname} {lastname}
-        <Button
-          onClick={zeMovieButtonPageHandler}
-          mt={10}
-          colorScheme="pink"
-          variant="outline"
+      <Fragment>
+        <Flex
+          alignItems="center"
+          h="40vh"
+          justifyContent="center"
+          fontWeight="bold"
+          fontSize="5xl"
+          flexDirection="column"
         >
-          Access to Zemovie Game
-        </Button>
-      </Flex>
+          <p>
+            Oh Sorry! {firstname} {lastname} so it was you.
+          </p>
+          <p> Want to play a game?</p>
+        </Flex>
+        <Flex
+          alignItems="center"
+          justifyContent="center"
+          fontWeight="bold"
+          fontSize="5xl"
+        >
+          <Button
+            onClick={zeMovieButtonPageHandler}
+            colorScheme="pink"
+            variant="outline"
+            size="lg"
+          >
+            Access to Zemovie Game
+          </Button>
+        </Flex>
+      </Fragment>
     );
   }
 };
