@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useGetByUsernameQuery } from "../../generated/graphql";
 import { createUrqlClient } from "../../utils/createUrqlClient";
 import { Flex } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 
 const User: NextPage = () => {
   const router = useRouter();
@@ -14,6 +15,11 @@ const User: NextPage = () => {
   const email = data?.getByUsername?.email;
   const firstname = data?.getByUsername?.firstname;
   const lastname = data?.getByUsername?.lastname;
+
+  const zeMovieButtonPageHandler = () => {
+    const router = useRouter();
+    router.push("/play");
+  };
 
   if (fetching) {
     return (
@@ -38,6 +44,14 @@ const User: NextPage = () => {
         fontSize="5xl"
       >
         Y're Welcome {firstname} {lastname}
+        <Button
+          onClick={zeMovieButtonPageHandler}
+          mt={10}
+          colorScheme="pink"
+          variant="outline"
+        >
+          Access to Zemovie Game
+        </Button>
       </Flex>
     );
   }
